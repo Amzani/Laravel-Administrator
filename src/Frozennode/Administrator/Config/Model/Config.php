@@ -336,6 +336,10 @@ class Config extends ConfigBase implements ConfigInterface {
 
 		//if a string was kicked back, it's an error, so return it
 		if (is_string($validation)) return $validation;
+                if (method_exists($model, 'logicValidation') && ($model->logicValidation()[0] === false))
+                {
+                    return $model->logicValidation()[1];
+                }
 
 		//save the model
 		$model->save();
