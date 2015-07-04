@@ -76,6 +76,10 @@ class Time extends Field {
 		if( !empty($input) && $input !== '0000-00-00') {
 			$time = new DateTime($input);
 		}
+                else
+                {
+                    $model->{$this->getOption('field_name')} = null;
+                }
 
 		//first we validate that it's a date/time
 		if ($time !== false)
